@@ -5,7 +5,7 @@ CLI based online shopping tool
 
 Customers can view products, view their purchases, or quit.
 
-![bamazonCustomerStart](./images/bamazonCustomerStart.png)
+![bamazonCustomerStart](images/bamazonCustomerStart.PNG)
 
 View Products:
 
