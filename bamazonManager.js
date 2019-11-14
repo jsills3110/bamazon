@@ -5,7 +5,7 @@ var db = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "123456",
     database: "bamazon"
 });
 
@@ -124,7 +124,7 @@ function addToStock(theID) {
                 console.log("Please enter a number higher than 0.");
                 addToStock();
             } else {
-                var newStock = parseInt(results[0].stock_quantity) - parseInt(choice.option);
+                var newStock = results[0].stock_quantity + choice.option;
                 db.query("UPDATE products SET ? WHERE ?",
                     [
                         {
@@ -136,9 +136,95 @@ function addToStock(theID) {
                     ], function (err) {
                         if (err) throw err;
                         console.log("Stock updated successfully!");
-                        start();
+                        startManager();
                     });
             }
         });
+    });
+}
+
+function addNewProduct() {
+
+    var productQuestions = [
+        {
+            name: "productName",
+            type: "input",
+            message: "What is the name of the product?",
+            validate: function (input) {
+                if (input === "") {
+                    return "Please enter a product name.";
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            name: "productDepartment",
+            type: "list",
+            message: "What is the department of the product?",
+            choices: ["Groceries", "Women's Clothing", "Men's Clothing", "Arts and Crafts", "Home Goods", "Kitchen", "Bath and Beauty", "Technology", "Pets", "Books", "Toys", "Garden and Outdoor"]
+        },
+        {
+            name: "productPrice",
+            type: "number",
+            message: "What is the price of a single unit of the product?",
+            validate: function (input) {
+                var price = parseFloat(input);
+                if (isNaN(price)) {
+                    return "Please enter a number.";
+                } else if (input <= 0) {
+                    return "The price must be higher than 0.";
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            name: "productStock",
+            type: "number",
+            message: "How much of this product is currently in stock?",
+            validate: function (input) {
+                var stock = parseInt(input);
+                if (isNaN(stock)) {
+                    return "Please enter a number.";
+                } else if (stock <= 0) {
+                    return "The stock must be higher than 0.";
+                } else {
+                    return true;
+                }
+            }
+        },
+    ]
+
+    inquirer.prompt(productQuestions).then(function (choices) {
+
+        var confirm = "Is this correct? Select N to cancel.\n" +
+            "Name: " + choices.productName + "\n" +
+            "Department: " + choices.productDepartment + "\n" +
+            "Price per unit: " + choices.productPrice + "\n" +
+            "Stock: " + choices.productStock + "\n";
+
+        inquirer.prompt({
+            name: "confirmProduct",
+            type: "confirm",
+            message: confirm,
+            default: true
+        }).then(function (choice) {
+            if (choice) {
+                var sqlUpdate = "INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (" +
+                    "\"" + choices.productName + "\", " +
+                    "\"" + choices.productDepartment + "\", " +
+                    choices.productPrice + ", " +
+                    choices.productStock + ")";
+                console.log(sqlUpdate);
+                db.query(sqlUpdate, function (err, results) {
+                    if (err) return err;
+                    console.log("Product added successfully!");
+                    startManager();
+                });
+            } else {
+                startManager();
+            }
+        })
     });
 }
