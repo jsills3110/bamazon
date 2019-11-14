@@ -216,7 +216,6 @@ function addNewProduct() {
                     "\"" + choices.productDepartment + "\", " +
                     choices.productPrice + ", " +
                     choices.productStock + ")";
-                console.log(sqlUpdate);
                 db.query(sqlUpdate, function (err, results) {
                     if (err) return err;
                     console.log("Product added successfully!");
