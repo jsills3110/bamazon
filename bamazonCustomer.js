@@ -22,16 +22,16 @@ function start() {
         name: "option",
         type: "list",
         message: "What would you like to do?",
-        choices: ["View Products", "View My Cart", "View My Purchases", "Quit"]
+        choices: ["View Products", "View My Purchases", "Quit"]
     }).then(function (choice) {
         var action = choice.option;
         switch (action) {
             case "View Products":
                 viewProducts();
                 break;
-            case "View My Cart":
-                viewCart();
-                break;
+            // case "View My Cart":
+            //     viewCart();
+            //     break;
             case "View My Purchases":
                 viewPurchases();
                 break;
@@ -95,18 +95,18 @@ function buyProduct(theID) {
                 "Name: " + results[0].product_name + "\n" +
                 "Price per unit: " + results[0].price + "\n" +
                 "Left in stock: " + results[0].stock_quantity + "\n" +
-                "\nWould you like to add this item to your cart or buy now?";
+                "\nWould you like buy this item now?";
             inquirer.prompt({
                 name: "option",
                 type: "list",
                 message: messageString,
-                choices: ["Add to Cart", "Buy Now", "Go Back"]
+                choices: ["Buy Now", "Go Back"]
             }).then(function (choice) {
                 var action = choice.option;
                 switch (action) {
-                    case "Add to Cart":
-                        addToCart(theID, results[0].stock_quantity, results[0].product_name, results[0].price);
-                        break;
+                    // case "Add to Cart":
+                    //     addToCart(theID, results[0].stock_quantity, results[0].product_name, results[0].price);
+                    //     break;
                     case "Buy Now":
                         buyNow(theID, results[0].stock_quantity, results[0].product_name, results[0].price);
                         break;
@@ -177,7 +177,7 @@ function buyNow(theID, theStock, theName, thePrice) {
                         itemPrice: thePrice,
                         itemQuantity: number
                     });
-                    console.log("Purchased successfully!");
+                    console.log("Purchased successfully! Your total was " + (parseFloat(thePrice) * parseFloat(number)).toFixed(2));
                     start();
                 });
         }
@@ -207,8 +207,8 @@ function viewCart() {
         }).then(function (choice) {
             var action = choice.option;
             switch (action) {
-                case "Purchase All":
-                    buyAll();
+                case "Purchase From Cart":
+                    purchaseFromCart();
                     break;
                 case "Remove All":
                     removeAll();
@@ -230,32 +230,31 @@ function viewCart() {
     }
 }
 
-function buyAll() {
-    db.query("SELECT item_id, product_name, price, stock_quantity FROM products", function (err, results) {
-        if (err) return err;
+function purchaseFromCart() {
+    var messageString = "Which item would you like to purchase from your cart? Please enter its Product ID or type -1 to go back.\n\n";
+    var itemIds = [];
+    for (var i = 0; i < customerCart.length; i++) {
+        messageString += customerCart[i].itemID + ") " + customerCart[i].itemName + "\n";
+        itemIds.push(customerCart[i].itemID);
+    }
+    messageString += "-1) Go Back\n\n";
 
-        for (var i = 0; i < customerCart.length; i++) {
-            db.query("UPDATE products SET ? WHERE ?",
-                [
-                    {
-                        stock_quantity: stock_quantity - customerCart[i].itemQuantity
-                    },
-                    {
-                        item_id: theID
-                    }
-                ], function (err) {
-                    if (err) throw err;
-                    customerPurchases.push({
-                        itemID: customerCart[i].itemID,
-                        itemName: customerCart[i].itemName,
-                        itemPrice: customerCart[i].itemPrice,
-                        itemQuantity: customerCart[i].itemQuantity
-                    });
-                    console.log(customerCart[0].itemName + " purchased successfully!");
-                });
+    inquirer.prompt({
+        name: "option",
+        type: "number",
+        message: messageString
+    }).then(function (choice) {
+        if (isNaN(choice.product)) {
+            console.log("Please enter a number.");
+            viewCart();
+        } else if (choice.product === -1) {
+            viewCart();
+        } else if (itemIds.indexOf(choice.product) < 0) {
+            console.log("That item does not exist. Please choose an item from the available list.");
+            viewCart();
+        } else {
+            buyProduct(choice.product);
         }
-        customerCart = [];
-        start();
     });
 }
 
@@ -272,7 +271,7 @@ function viewPurchases() {
             purchasedTotal += totalPrice;
             console.log(item.itemName + ", Quantity: " + item.itemQuantity + ", Price Per Item: " + item.itemPrice + ", Total: " + totalPrice.toFixed(2));
         }
-        console.log("\nPurchased Total: " + purchasedTotal.toFixed(2));
+        console.log("\nPurchased Total: " + purchasedTotal.toFixed(2) + "\n");
         start();
     }
 }
