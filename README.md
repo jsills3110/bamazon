@@ -9,54 +9,54 @@ Customers can view products, view their purchases, or quit.
 
 View Products:
 
-![bamazonCustomerViewProducts](images/bamazonCustomerViewProducts.png)
+![bamazonCustomerViewProducts](images/bamazonCustomerViewProducts.PNG)
 
 Select a product to purchase:
 
-![bamazonCustomerBuyProductConfirm](images/bamazonCustomerBuyProductConfirm.png)
+![bamazonCustomerBuyProductConfirm](images/bamazonCustomerBuyProductConfirm.PNG)
 
 Enter quantity to purchase:
 
-![bamazonCustomerBuyProductQuantity](images/bamazonCustomerBuyProductQuantity.png)
+![bamazonCustomerBuyProductQuantity](images/bamazonCustomerBuyProductQuantity.PNG)
 
 Purchase confirmation:
 
-![bamazonCustomerPurchaseConfirmation](images/bamazonCustomerPurchaseConfirmation.png)
+![bamazonCustomerPurchaseConfirmation](images/bamazonCustomerPurchaseConfirmation.PNG)
 
 Customer purchases view:
 
-![bamazonCustomerViewPurchases](images/bamazonCustomerViewPurchases.png)
+![bamazonCustomerViewPurchases](images/bamazonCustomerViewPurchases.PNG)
 
 ### Bamazon Manager
 
 Managers can view products, view products that are low in stock, add to the inventory, add new products, and quit.
 
-![bamazonManagerStart](images/bamazonManagerStart.png)
+![bamazonManagerStart](images/bamazonManagerStart.PNG)
 
 View Products:
 
-![bamazonManagerViewProducts](images/bamazonManagerViewProducts.png)
+![bamazonManagerViewProducts](images/bamazonManagerViewProducts.PNG)
 
 View Low Inventory:
 
-![bamazonManagerViewLowStock](images/bamazonManagerViewLowStock.png)
+![bamazonManagerViewLowStock](images/bamazonManagerViewLowStock.PNG)
 
 Add to Inventory:
 
-![bamazonManagerAddToStock](images/bamazonManagerAddToStock.png)
+![bamazonManagerAddToStock](images/bamazonManagerAddToStock.PNG)
 
 Indicate inventory quantity to add:
 
-![bamazonManagerAddQuantity](images/bamazonManagerAddQuantity.png)
+![bamazonManagerAddQuantity](images/bamazonManagerAddQuantity.PNG)
 
 Add to inventory confirmation:
 
-![bamazonManagerAddQuantityConfirmation](images/bamazonManagerAddQuantityConfirmation.png)
+![bamazonManagerAddQuantityConfirmation](images/bamazonManagerAddQuantityConfirmation.PNG)
 
 Add a new product:
 
-![bamazonManagerAddProduct](images/bamazonManagerAddProduct.png)
+![bamazonManagerAddProduct](images/bamazonManagerAddProduct.PNG)
 
 New product confirmation:
 
-![bamazonManagerAddProductConfirmation](./images/bamazonManagerAddProductConfirmation.png)
+![bamazonManagerAddProductConfirmation](./images/bamazonManagerAddProductConfirmation.PNG)
