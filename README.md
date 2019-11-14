@@ -5,7 +5,7 @@ CLI based online shopping tool
 
 Customers can view products, view their purchases, or quit.
 
-![bamazonCustomerStart](images/bamazonCustomerStart.png)
+![bamazonCustomerStart](./images/bamazonCustomerStart.png)
 
 View Products:
 
@@ -59,4 +59,4 @@ Add a new product:
 
 New product confirmation:
 
-![bamazonManagerAddProductConfirmation](images/bamazonManagerAddProductConfirmation.png)
+![bamazonManagerAddProductConfirmation](./images/bamazonManagerAddProductConfirmation.png)
