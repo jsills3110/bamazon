@@ -13,19 +13,19 @@ View Products:
 
 Select a product to purchase:
 
-![customer-buy-product](image/bamazonCustomerBuyProductConfirm.png)
+![customer-buy-product](images/bamazonCustomerBuyProductConfirm.png)
 
 Enter quantity to purchase:
 
-![customer-select-quantity](image/bamazonCustomerBuyProductQuantity.png)
+![customer-select-quantity](images/bamazonCustomerBuyProductQuantity.png)
 
 Purchase confirmation:
 
-![customer-purchase-confirmation](image/bamazonCustomerPurchaseConfirmation.png)
+![customer-purchase-confirmation](images/bamazonCustomerPurchaseConfirmation.png)
 
 Customer purchases view:
 
-![customer-view-purchases](image/bamazonCustomerViewPurchases.png)
+![customer-view-purchases](images/bamazonCustomerViewPurchases.png)
 
 ### Bamazon Manager
 
@@ -51,7 +51,7 @@ Indicate inventory quantity to add:
 
 Add to inventory confirmation:
 
-![manager-inventory-confirmation](images/bamazonManagerQuantityConfirmation.png)
+![manager-inventory-confirmation](images/bamazonManagerAddQuantityConfirmation.png)
 
 Add a new product:
 
